@@ -1,0 +1,19 @@
+{
+  "contactos": [
+    {
+      "id": "1",
+      "nombre": "Yhojan",
+      "telefono": "3054072356",
+      "correo": "caroyhojan@gmail.com",
+      "etiqueta": "La pampara"
+    },
+    {
+      "id": "d9a6",
+      "nombre": "Juan",
+      "telefono": "1234567890",
+      "correo": "juan@gmail.com",
+      "etiqueta": "Gym"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

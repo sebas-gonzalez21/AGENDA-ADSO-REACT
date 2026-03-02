@@ -1,25 +1,32 @@
-export default function ContactoCard({ contacto, eliminarContacto }) {
-  const { nombre, telefono, correo, etiqueta } = contacto;
-
+export default function ContactoCard({ nombre, telefono, correo, etiqueta, onEliminar }) {
   return (
-    <article className="bg-white border rounded-lg shadow-sm p-4 mb-4">
-      <h3 className="text-lg font-semibold text-purple-800">{nombre}</h3>
+    <div className="bg-white shadow-sm border border-gray-200 rounded-2xl p-6 flex items-start justify-between">
+      <div className="space-y-1">
+        <h3 className="text-xl font-semibold text-gray-800">{nombre}</h3>
 
-      <p className="text-sm text-gray-600">📞 {telefono}</p>
-      <p className="text-sm text-gray-600">✉️ {correo}</p>
+        <p className="text-gray-600 text-sm flex items-center gap-2">
+          <span className="text-purple-500 text-lg">📞</span>
+          {telefono}
+        </p>
 
-      {etiqueta && (
-        <span className="inline-block mt-2 text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
-          {etiqueta}
-        </span>
-      )}
+        <p className="text-gray-600 text-sm flex items-center gap-2">
+          <span className="text-purple-500 text-lg">✉️</span>
+          {correo}
+        </p>
+
+        {etiqueta && (
+          <span className="inline-block bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full mt-2">
+            {etiqueta}
+          </span>
+        )}
+      </div>
 
       <button
-        onClick={() => eliminarContacto(correo)}
-        className="mt-3 text-sm text-red-500 hover:text-red-700 transition-colors duration-200"
+        onClick={onEliminar}
+        className="bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg shadow transition"
       >
-        🗑️ Eliminar
+        Eliminar
       </button>
-    </article>
+    </div>
   );
 }

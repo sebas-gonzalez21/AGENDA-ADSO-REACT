@@ -1,14 +1,12 @@
 import { useState } from "react";
 
-const estadoInicial = {
-  nombre: "",
-  telefono: "",
-  correo: "",
-  etiqueta: "",
-};
-
-export default function FormularioContacto({ agregarContacto }) {
-  const [form, setForm] = useState(estadoInicial);
+export default function FormularioContacto({ onAgregar }) {
+  const [form, setForm] = useState({
+    nombre: "",
+    telefono: "",
+    correo: "",
+    etiqueta: "",
+  });
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,64 +14,73 @@ export default function FormularioContacto({ agregarContacto }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    
-    if (!form.nombre || !form.telefono || !form.correo) {
-      alert("Por favor completa los campos obligatorios (*)");
-      return;
-    }
-
-    agregarContacto(form);
-    setForm(estadoInicial); 
+    if (!form.nombre || !form.telefono || !form.correo) return;
+    onAgregar(form);
+    setForm({ nombre: "", telefono: "", correo: "", etiqueta: "" });
   };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="bg-white shadow-md rounded-lg p-5 flex flex-col gap-4 mb-6"
-    >
-      <label className="text-sm font-semibold">Nombre *</label>
-      <input
-        name="nombre"
-        value={form.nombre}
-        onChange={onChange}
-        placeholder="Ej: Ana López"
-        className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
-      />
+    <form onSubmit={onSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Nombre 
+          </label>
+          <input
+            className="w-full rounded-xl border-gray-300 focus:ring-purple-500 focus:border-purple-500"
+            name="nombre"
+            placeholder="Ej: Camila Pérez"
+            value={form.nombre}
+            onChange={onChange}
+          />
+        </div>
 
-      <label className="text-sm font-semibold">Teléfono *</label>
-      <input
-        name="telefono"
-        value={form.telefono}
-        onChange={onChange}
-        placeholder="Ej: 3001234567"
-        className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
-      />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Teléfono 
+          </label>
+          <input
+            className="w-full rounded-xl border-gray-300 focus:ring-purple-500 focus:border-purple-500"
+            name="telefono"
+            placeholder="Ej: 300 123 4567"
+            value={form.telefono}
+            onChange={onChange}
+          />
+        </div>
+      </div>
 
-      <label className="text-sm font-semibold">Correo *</label>
-      <input
-        name="correo"
-        value={form.correo}
-        onChange={onChange}
-        placeholder="Ej: ana@correo.com"
-        className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
-      />
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Correo 
+        </label>
+        <input
+          className="w-full rounded-xl border-gray-300 focus:ring-purple-500 focus:border-purple-500"
+          name="correo"
+          placeholder="Ej: camila@sena.edu.co"
+          value={form.correo}
+          onChange={onChange}
+        />
+      </div>
 
-      <label className="text-sm font-semibold">Etiqueta (opcional)</label>
-      <input
-        name="etiqueta"
-        value={form.etiqueta}
-        onChange={onChange}
-        placeholder="Ej: Trabajo, Familia..."
-        className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
-      />
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Etiqueta (opcional)
+        </label>
+        <input
+          className="w-full rounded-xl border-gray-300 focus:ring-purple-500 focus:border-purple-500"
+          name="etiqueta"
+          placeholder="Ej: Trabajo"
+          value={form.etiqueta}
+          onChange={onChange}
+        />
+      </div>
 
       <button
-        type="submit"
-        className="bg-purple-600 hover:bg-purple-800 text-white py-2 rounded-md transition-colors duration-200"
+        className="w-full md:w-auto bg-gray-500 hover:bg-gray-500 text-white px-6 py-3 rounded-xl font-semibold shadow-sm"
       >
         Agregar contacto
       </button>
     </form>
   );
 }
+
