@@ -26,7 +26,6 @@ export default function App() {
         Agenda ADSO v4
       </h1>
 
-      {/* Badge ADSO */}
       <div className="flex justify-center mb-2">
         <p className="bg-purple-600 text-white text-xs rounded px-2 py-1 w-fit">
           ADSO
