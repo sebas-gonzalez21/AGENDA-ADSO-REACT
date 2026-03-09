@@ -9,10 +9,16 @@ import FormularioContacto from "./components/FormularioContacto";
 import ContactoCard from "./components/ContactoCard";
 
 function App() {
+  // Estados principales
   const [contactos, setContactos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
 
+  // Estado para búsqueda y orden
+  const [busqueda, setBusqueda] = useState("");
+  const [ordenAsc, setOrdenAsc] = useState(true);
+
+  // Cargar contactos al montar el componente
   useEffect(() => {
     const cargarContactos = async () => {
       try {
@@ -32,6 +38,7 @@ function App() {
     cargarContactos();
   }, []);
 
+  // Agregar un nuevo contacto
   const onAgregarContacto = async (nuevoContacto) => {
     try {
       setError("");
@@ -46,6 +53,7 @@ function App() {
     }
   };
 
+  // Eliminar contacto
   const onEliminarContacto = async (id) => {
     try {
       setError("");
@@ -58,6 +66,24 @@ function App() {
       );
     }
   };
+
+  // Filtrar contactos según búsqueda
+  const contactosFiltrados = contactos.filter((c) => {
+    const termino = busqueda.toLowerCase();
+    const nombre = c.nombre.toLowerCase();
+    const correo = c.correo.toLowerCase();
+    const etiqueta = (c.etiqueta || "").toLowerCase();
+    return nombre.includes(termino) || correo.includes(termino) || etiqueta.includes(termino);
+  });
+
+  // Ordenar contactos
+  const contactosOrdenados = [...contactosFiltrados].sort((a, b) => {
+    const nombreA = a.nombre.toLowerCase();
+    const nombreB = b.nombre.toLowerCase();
+    if (nombreA < nombreB) return ordenAsc ? -1 : 1;
+    if (nombreA > nombreB) return ordenAsc ? 1 : -1;
+    return 0;
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -78,19 +104,37 @@ function App() {
           </div>
         )}
 
+        {/* Buscador y botón de orden */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+          <input
+            type="text"
+            className="w-full md:flex-1 rounded-xl border-gray-300 focus:ring-purple-500 focus:border-purple-500 text-sm"
+            placeholder="Buscar por nombre, correo o etiqueta..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={() => setOrdenAsc((prev) => !prev)}
+            className="bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-xl border border-gray-200 hover:bg-gray-200"
+          >
+            {ordenAsc ? "Ordenar Z-A" : "Ordenar A-Z"}
+          </button>
+        </div>
+
         {cargando ? (
           <p className="text-sm text-gray-500">Cargando contactos...</p>
         ) : (
           <>
             <FormularioContacto onAgregar={onAgregarContacto} />
             <section className="space-y-4">
-              {contactos.length === 0 ? (
+              {contactosOrdenados.length === 0 ? (
                 <p className="text-sm text-gray-500">
                   Aún no tienes contactos registrados. Agrega el primero usando
                   el formulario superior.
                 </p>
               ) : (
-                contactos.map((c) => (
+                contactosOrdenados.map((c) => (
                   <ContactoCard
                     key={c.id}
                     nombre={c.nombre}
