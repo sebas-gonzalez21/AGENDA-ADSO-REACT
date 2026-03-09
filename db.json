@@ -8,11 +8,32 @@
       "etiqueta": "La pampara"
     },
     {
-      "id": "d9a6",
-      "nombre": "Juan",
+      "id": "23cc",
+      "nombre": "Ismael",
       "telefono": "1234567890",
+      "correo": "ismael@sena.com",
+      "etiqueta": "el pro"
+    },
+    {
+      "id": "f672",
+      "nombre": "hola",
+      "telefono": "1234567890",
+      "correo": "ismael@sena.com",
+      "etiqueta": "el pro"
+    },
+    {
+      "id": "742e",
+      "nombre": "Ismael",
+      "telefono": "12345678",
+      "correo": "isma@gmail.com",
+      "etiqueta": "crack"
+    },
+    {
+      "id": "f975",
+      "nombre": "JUAN",
+      "telefono": "12352452",
       "correo": "juan@gmail.com",
-      "etiqueta": "Gym"
+      "etiqueta": "el pro"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
