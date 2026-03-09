@@ -9,16 +9,13 @@ import FormularioContacto from "./components/FormularioContacto";
 import ContactoCard from "./components/ContactoCard";
 
 function App() {
-  // Estados principales
   const [contactos, setContactos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
 
-  // Estado para búsqueda y orden
   const [busqueda, setBusqueda] = useState("");
   const [ordenAsc, setOrdenAsc] = useState(true);
 
-  // Cargar contactos al montar el componente
   useEffect(() => {
     const cargarContactos = async () => {
       try {
@@ -38,7 +35,6 @@ function App() {
     cargarContactos();
   }, []);
 
-  // Agregar un nuevo contacto
   const onAgregarContacto = async (nuevoContacto) => {
     try {
       setError("");
@@ -53,7 +49,6 @@ function App() {
     }
   };
 
-  // Eliminar contacto
   const onEliminarContacto = async (id) => {
     try {
       setError("");
@@ -67,7 +62,6 @@ function App() {
     }
   };
 
-  // Filtrar contactos según búsqueda
   const contactosFiltrados = contactos.filter((c) => {
     const termino = busqueda.toLowerCase();
     const nombre = c.nombre.toLowerCase();
@@ -76,7 +70,6 @@ function App() {
     return nombre.includes(termino) || correo.includes(termino) || etiqueta.includes(termino);
   });
 
-  // Ordenar contactos
   const contactosOrdenados = [...contactosFiltrados].sort((a, b) => {
     const nombreA = a.nombre.toLowerCase();
     const nombreB = b.nombre.toLowerCase();
@@ -104,7 +97,6 @@ function App() {
           </div>
         )}
 
-        {/* Buscador y botón de orden */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
           <input
             type="text"
