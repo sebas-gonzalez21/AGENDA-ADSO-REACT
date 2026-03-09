@@ -29,11 +29,18 @@
       "etiqueta": "crack"
     },
     {
-      "id": "f975",
-      "nombre": "JUAN",
-      "telefono": "12352452",
-      "correo": "juan@gmail.com",
-      "etiqueta": "el pro"
+      "id": "ade6",
+      "nombre": "Ana",
+      "telefono": "30540722356",
+      "correo": "ana@gmail.com",
+      "etiqueta": "Casa"
+    },
+    {
+      "id": "88d3",
+      "nombre": "Ismael",
+      "telefono": "12345654",
+      "correo": "asf@",
+      "etiqueta": "bdbf"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
