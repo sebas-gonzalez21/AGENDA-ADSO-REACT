@@ -1,46 +1,11 @@
 {
   "contactos": [
     {
-      "id": "1",
-      "nombre": "Yhojan",
-      "telefono": "3054072356",
+      "nombre": "Yhojan  Caro",
+      "telefono": "3063952356",
       "correo": "caroyhojan@gmail.com",
-      "etiqueta": "La pampara"
-    },
-    {
-      "id": "23cc",
-      "nombre": "Ismael",
-      "telefono": "1234567890",
-      "correo": "ismael@sena.com",
-      "etiqueta": "el pro"
-    },
-    {
-      "id": "f672",
-      "nombre": "hola",
-      "telefono": "1234567890",
-      "correo": "ismael@sena.com",
-      "etiqueta": "el pro"
-    },
-    {
-      "id": "742e",
-      "nombre": "Ismael",
-      "telefono": "12345678",
-      "correo": "isma@gmail.com",
-      "etiqueta": "crack"
-    },
-    {
-      "id": "ade6",
-      "nombre": "Ana",
-      "telefono": "30540722356",
-      "correo": "ana@gmail.com",
-      "etiqueta": "Casa"
-    },
-    {
-      "id": "88d3",
-      "nombre": "Ismael",
-      "telefono": "12345654",
-      "correo": "asf@",
-      "etiqueta": "bdbf"
+      "etiqueta": "Nada por decir",
+      "id": "1"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
